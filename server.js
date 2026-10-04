@@ -174,3 +174,23 @@ if (require.main === module) {
     app.listen(port, () => console.log('Faculty directory listening on port ' + port));
   }).catch((e) => { console.error('Could not set up the database:', e.message); process.exit(1); });
 }
+if (process.env.VERCEL) {
+  const { Pool } = require('pg');
+  const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  });
+  const { app, db } = createApp({
+    pool,
+    production: true,
+    adminPassword: process.env.ADMIN_PASSWORD,
+    sessionSecret: process.env.SESSION_SECRET,
+  });
+  const ready = db.init();
+  const handler = (req, res) => ready.then(
+    () => app(req, res),
+    (e) => { console.error(e); res.statusCode = 500; res.end('Database setup failed'); }
+  );
+  handler.createApp = createApp;
+  module.exports = handler;
+}
