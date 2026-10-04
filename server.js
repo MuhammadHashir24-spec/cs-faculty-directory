@@ -156,7 +156,7 @@ function createApp({ pool, adminPassword, sessionSecret, production }) {
 
 module.exports = { createApp };
 
-if (require.main === module) {
+if (require.main === module && !process.env.VERCEL) {
   const { Pool } = require('pg');
   const production = process.env.NODE_ENV === 'production';
   if (!process.env.DATABASE_URL) { console.error('DATABASE_URL is not set.'); process.exit(1); }
