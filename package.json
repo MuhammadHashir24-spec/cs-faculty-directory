@@ -1,0 +1,21 @@
+{
+  "name": "cs-faculty-directory",
+  "version": "1.0.0",
+  "description": "Public directory of CS department faculty with a password-protected admin area.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "pg-mem": "^3.0.5"
+  },
+  "license": "MIT"
+}
