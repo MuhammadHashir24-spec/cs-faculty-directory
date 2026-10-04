@@ -11,10 +11,17 @@
 <meta name="theme-color" content="#1F4BD8">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Public+Sans:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="/style.css">
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#0f172a">
 </head>
 <body>
 <div id="app"><p class="loading">Loading the faculty list…</p></div>
 <noscript><p class="loading">This directory needs JavaScript to load.</p></noscript>
 <script src="/app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js');
+}
+</script>
 </body>
 </html>
